@@ -1,0 +1,97 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.88);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.dev-grid > .ant-col {
+  display: flex;
+}
+
+.dev-card-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: devFadeUp 0.35s ease both;
+}
+
+@keyframes devFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dev-card-wrap .ant-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.dev-card-wrap:hover .ant-card {
+  transform: translateY(-4px);
+}
+
+.dev-card-wrap .ant-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+}
+
+.dev-card-wrap .ant-card-body > .ant-space {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.dev-card-wrap .ant-card-head-title {
+  white-space: normal;
+}
+
+.dev-card-wrap .ant-card-body > .ant-space > .ant-space-item:last-child {
+  margin-top: auto;
+}
+
+.dev-card-wrap .dev-card-actions {
+  padding-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.dev-card-wrap .dev-card-actions .ant-btn {
+  width: 100%;
+  max-width: 260px;
+}

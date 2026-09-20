@@ -1,0 +1,21 @@
+import { Button, Result } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useI18n } from "../i18n/useI18n";
+
+export default function NotFoundPage() {
+  const { t } = useI18n();
+  const navigate = useNavigate();
+
+  return (
+    <Result
+      status="404"
+      title="404"
+      subTitle={t("notFound.title")}
+      extra={
+        <Button type="primary" onClick={() => navigate("/")}>
+          {t("notFound.home")}
+        </Button>
+      }
+    />
+  );
+}
