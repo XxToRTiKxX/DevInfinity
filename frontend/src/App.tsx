@@ -10,7 +10,7 @@ import { LanguageProvider } from "./i18n/LanguageProvider";
 import { useI18n } from "./i18n/useI18n";
 import { AuthProvider } from "./auth/AuthProvider";
 
-// fsai_7c9e2b41_lr1
+
 function AppEffects() {
   const { mode } = useTheme();
   const { token } = theme.useToken();
