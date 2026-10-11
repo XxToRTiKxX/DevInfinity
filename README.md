@@ -67,7 +67,7 @@ DevInfinity соединяет идею и команду:
 
 ```
 projectX/
-├── frontend/          # React-приложение 
+├── frontend/          # React-приложение (лаб. 1)
 │   └── src/
 │       ├── auth/        # демо-авторизация (вход, регистрация, профиль)
 │       ├── components/  # переиспользуемые компоненты (карточки, теги, header/footer)
@@ -81,8 +81,82 @@ projectX/
 │       ├── App.tsx      # настройка темы и провайдеров
 │       └── main.tsx     # точка входа
 ├── docs/screenshots/    # скриншоты экранов
-└── backend/             # появится в лабораторной работе №2
+└── backend/             # FastAPI-приложение (лабораторная работа №2)
+    ├── app/
+    │   ├── api/routes/   # маршруты API
+    │   ├── core/         # конфигурация, исключения
+    │   ├── crud/         # операции с БД
+    │   ├── db/           # подключение к БД, сиды
+    │   ├── models/       # модели SQLAlchemy
+    │   └── schemas/      # схемы Pydantic
+    ├── requirements.txt
+    └── .env.example
 ```
+
+## Модель данных (Backend)
+
+Основные сущности:
+
+- `User` — пользователь платформы.
+- `Project` — проект/идея с тегами, автором, статусом (`recruiting`, `forming`, `started`).
+- `Tag` — тег технологий/направлений.
+- `Team` — команда проекта с участниками (`TeamMember`).
+- `Application` — заявка пользователя в команду проекта с ролями и статусом (`pending`, `accepted`, `rejected`).
+- `project_tags` — связь проектов и тегов (many-to-many).
+
+## Подготовка и запуск Backend
+
+Требования: Python 3.10+ (рекомендуется Python 3.12), PostgreSQL.
+
+1. Перейти в каталог backend:
+
+```bash
+cd backend
+```
+
+2. Создать и активировать виртуальное окружение (по желанию):
+
+```bash
+python3.12 -m venv .venv  # или python3 -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+```
+
+3. Установить зависимости:
+
+```bash
+pip install -r requirements.txt
+```
+
+Указать параметры подключения к PostgreSQL (`POSTGRES_*`) и при необходимости `CORS_ORIGINS` в .env .
+
+4. Создать БД и таблицы:
+
+```bash
+python -m app.db.init_db
+```
+
+5. Наполнить демо-данными:
+
+```bash
+python -m app.db.seed
+```
+
+6. Запустить API-сервер:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+API будет доступно по адресу: <http://localhost:8000>
+
+Полезные эндпоинты:
+
+- `GET /api/health` — проверка работоспособности
+- `GET /api/projects` — список проектов (фильтры: `?status=recruiting&tag=FastAPI&search=...&author_id=...`)
+- `GET /api/teams` — список команд
+- `GET /api/applications` — список заявок
+
+Документация Swagger: <http://localhost:8000/docs>
 
 ## Запуск frontend
 

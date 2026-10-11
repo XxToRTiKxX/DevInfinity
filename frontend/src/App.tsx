@@ -10,7 +10,6 @@ import { LanguageProvider } from "./i18n/LanguageProvider";
 import { useI18n } from "./i18n/useI18n";
 import { AuthProvider } from "./auth/AuthProvider";
 
-
 function AppEffects() {
   const { mode } = useTheme();
   const { token } = theme.useToken();
